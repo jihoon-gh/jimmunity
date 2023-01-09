@@ -1,6 +1,8 @@
 package com.project.jimmunity.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,11 +33,12 @@ public class Member extends BaseTimeEntity {
     private String introduction;
 
     @OneToMany(mappedBy = "member")
-    private List<Post> posts = new ArrayList<>();
+    private List<Post> postList = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
-    private List<Comment> comments = new ArrayList<>();
+    private List<Comment> commentList = new ArrayList<>();
 
+    @Builder
     public Member(String email, String password, String name) {
         this.email = email;
         this.password = password;
@@ -55,11 +58,11 @@ public class Member extends BaseTimeEntity {
     }
 
     public void addPost(Post post){
-        this.posts.add(post);
+        this.postList.add(post);
     }
 
     public void addComment(Comment comment){
-        this.comments.add(comment);
+        this.commentList.add(comment);
     }
 
 

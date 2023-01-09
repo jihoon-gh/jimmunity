@@ -1,6 +1,8 @@
 package com.project.jimmunity.entityTest;
 
+import com.project.jimmunity.entity.Comment;
 import com.project.jimmunity.entity.Member;
+import com.project.jimmunity.entity.Post;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
@@ -8,65 +10,98 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.contentOf;
 
-@DataJpaTest
 public class MemberTest {
 
-
-    @PersistenceContext
-    EntityManager em;
-
     @Test
-    public void 멤버_생성시_uuid_test(){
+    public void costructNewMemberWithBuilderTest(){
 
         //given
-        Member member1 = new Member("test@test","test","test1");
-        Member member2 = new Member("test@test","test","test2");
-
-        em.persist(member1);
-        em.persist(member2);
-
-        em.flush();
-        em.clear();
+        String name = "test";
+        String password = "test";
+        String email = "test@test.com";
 
         //when
-        List<Member> result = em.createQuery("select m from Member m", Member.class)
-                .getResultList();
+        Member member = Member.builder()
+                .name(name)
+                .password(password)
+                .email(email)
+                .build();
 
         //then
-        assertThat(result.get(0).getId()).isNotEqualTo(result.get(1).getId());
-        System.out.println("uuid1 = " + result.get(0).getId());
-        System.out.println("uuid2 = " + result.get(1).getId());
-
+        assertThat(member.getName()).isEqualTo("test");
+        assertThat(member.getPassword()).isEqualTo("test");
+        assertThat(member.getEmail()).isEqualTo("test@test.com");
     }
 
     @Test
-    public void 비밀번호_변경_테스트(){
+    public void changeProfileImgTest(){
         //given
-        Member member = new Member("test@test","test","test1");
-        em.persist(member);
-        em.flush();
-        em.clear();
+        Member member = new Member("test", "test", "test");
 
         //when
-        Member findMember = em.createQuery("select m from Member m where m.name =: test1",Member.class)
-                .setParameter("test1","test1")
-                .getSingleResult();
-
-        findMember.changePassword("changedPassword");
-        em.flush();
-        em.clear();
-
-        Member result = em.createQuery("select m from Member m where m.name =: test1",Member.class)
-                .setParameter("test1","test1")
-                .getSingleResult();
+        member.changeProfileImg("changedImg");
 
         //then
-        assertThat(result.getPassword()).isEqualTo("changedPassword");
+        assertThat(member.getProfileImg()).isEqualTo("changedImg");
+
     }
+    @Test
+    public void changePasswordTest(){
+        //given
+        Member member = new Member("test", "test", "test");
+
+        //when
+        member.changePassword("changedPassword");
+
+        //then
+        assertThat(member.getPassword()).isEqualTo("changedPassword");
+    }
+    @Test
+    public void changeIntroductionTest(){
+        //given
+        Member member = new Member("test", "test", "test");
+
+        //when
+        member.changeIntroduction("changed");
+
+        //then
+        assertThat(member.getIntroduction()).isEqualTo("changed");
+    }
+    @Test
+    public void addPostTest(){
+        //given
+        Member member = new Member("test", "test", "test");
+        Post post = new Post();
+
+        //when
+        member.addPost(post);
+
+        //then
+        assertThat(member.getPostList().size()).isEqualTo(1);
+    }
+    @Test
+    public void addCommentTest(){
+        //given
+        Member member = new Member("test", "test", "test");
+        Comment comment1 = new Comment();
+        Comment comment2 = new Comment();
+
+        //when
+        member.addComment(comment1);
+        member.addComment(comment2);
+
+        //then
+        assertThat(member.getCommentList().size()).isEqualTo(2);
+    }
+
+
 
 }
