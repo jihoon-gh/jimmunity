@@ -16,5 +16,5 @@
 
 ### 진행 상황
 * 20230104 : project init
-* 20230104 : [FEAT/Member] member 클래스 완성. unit test 작성중. ERD 그리는 중
-* 20230110 : [TEST] Create MemberTest and tests about methods about Member Entity
+* 20230104 : [FEAT/Member.java] member 클래스 완성. unit test 작성중. ERD 그리는 중
+* 20230110 : [TEST/MemberTest.java] Create MemberTest and tests about methods about Member Entity
