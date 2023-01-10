@@ -33,7 +33,7 @@ public class Post extends BaseEntity{
 
     @Builder
     public Post(Member member, String title, String content){
-        this.member = member;
+        setPostOwner(member);
         this.title = title;
         this.content = content;
     }
