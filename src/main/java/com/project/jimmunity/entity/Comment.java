@@ -2,12 +2,14 @@ package com.project.jimmunity.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.UUID;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Comment extends BaseEntity{
 
     @Id @Column(name = "comment_id", columnDefinition = "BINARY(16)")
@@ -24,10 +26,24 @@ public class Comment extends BaseEntity{
     @JoinColumn(name = "post_id")
     private Post post;
 
-
-
+    public Comment(Member member, Post post, String content){
+        setOwner(member);
+        setOriginalPost(post);
+        changeContent(content);
+    }
 
     public void changeContent(String content){
         this.content = content;
     }
+
+    public void setOwner(Member member){
+        this.member = member;
+        member.addComment(this);
+    }
+
+    public void setOriginalPost(Post post){
+        this.post = post;
+        post.addComment(this);
+    }
+
 }
