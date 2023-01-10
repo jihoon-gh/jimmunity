@@ -1,5 +1,7 @@
 package com.project.jimmunity;
 
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import jakarta.persistence.EntityManager;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -22,4 +24,8 @@ public class JimmunityApplication {
         return () -> Optional.of(UUID.randomUUID().toString());
     }
 
+    @Bean
+    public JPAQueryFactory queryFactoryProvider(EntityManager em){
+        return new JPAQueryFactory(em);
+    }
 }

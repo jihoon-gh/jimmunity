@@ -1,11 +1,9 @@
 package com.project.jimmunity.entityTest;
 
-import com.project.jimmunity.entity.Comment;
-import com.project.jimmunity.entity.Member;
-import com.project.jimmunity.entity.Post;
-import org.assertj.core.api.Assertions;
+import com.project.jimmunity.comment.Comment;
+import com.project.jimmunity.member.Member;
+import com.project.jimmunity.post.Post;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

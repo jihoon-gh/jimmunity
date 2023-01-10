@@ -1,5 +1,8 @@
-package com.project.jimmunity.entity;
+package com.project.jimmunity.post;
 
+import com.project.jimmunity.member.Member;
+import com.project.jimmunity.comment.Comment;
+import com.project.jimmunity.commonEntity.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -11,7 +14,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Post extends BaseEntity{
+public class Post extends BaseEntity {
 
     @Id @Column(name = "post_id", columnDefinition = "BINARY(16)")
     @GeneratedValue(generator = "uuid2")

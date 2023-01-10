@@ -1,5 +1,8 @@
-package com.project.jimmunity.entity;
+package com.project.jimmunity.comment;
 
+import com.project.jimmunity.member.Member;
+import com.project.jimmunity.commonEntity.BaseEntity;
+import com.project.jimmunity.post.Post;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +13,7 @@ import java.util.UUID;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Comment extends BaseEntity{
+public class Comment extends BaseEntity {
 
     @Id @Column(name = "comment_id", columnDefinition = "BINARY(16)")
     @GeneratedValue(generator = "uuid2")

@@ -1,19 +1,9 @@
 package com.project.jimmunity.entityTest;
 
-import com.project.jimmunity.entity.Comment;
-import com.project.jimmunity.entity.Member;
-import com.project.jimmunity.entity.Post;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
+import com.project.jimmunity.comment.Comment;
+import com.project.jimmunity.member.Member;
+import com.project.jimmunity.post.Post;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.web.reactive.server.WebTestClient;
-
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.contentOf;

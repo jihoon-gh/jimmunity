@@ -1,7 +1,9 @@
-package com.project.jimmunity.entity;
+package com.project.jimmunity.member;
 
+import com.project.jimmunity.commonEntity.BaseTimeEntity;
+import com.project.jimmunity.comment.Comment;
+import com.project.jimmunity.post.Post;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

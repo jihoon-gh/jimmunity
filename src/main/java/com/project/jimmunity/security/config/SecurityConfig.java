@@ -1,4 +1,4 @@
-package com.project.jimmunity.config;
+package com.project.jimmunity.security.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
