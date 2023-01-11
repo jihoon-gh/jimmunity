@@ -24,12 +24,12 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
         return queryFactory
                 .select(member)
                 .from(member)
-                .where(jobExist(job), ageGte(age), expYearGte(expYear))
+                .where(jobEq(job), ageGte(age), expYearGte(expYear))
                 .fetch();
     }
 
-    public BooleanExpression jobExist(Job job){
-        return job == null ? null : member.job.eq(job);
+    public BooleanExpression jobEq(Job job){
+        return job == null ? null : member.job.stringValue().eq(job.name());
     }
 
     public BooleanExpression expYearGte(Integer expYear){

@@ -1,6 +1,7 @@
 package com.project.jimmunity.entityTest;
 
 import com.project.jimmunity.comment.Comment;
+import com.project.jimmunity.member.Job;
 import com.project.jimmunity.member.Member;
 import com.project.jimmunity.post.Post;
 import org.junit.jupiter.api.Test;
@@ -34,7 +35,7 @@ public class MemberTest {
     @Test
     public void changeProfileImgTest(){
         //given
-        Member member = new Member("test", "test", "test");
+        Member member = new Member("test", "test", "test", Job.OTHER);
 
         //when
         member.changeProfileImg("changedImg");
@@ -46,7 +47,7 @@ public class MemberTest {
     @Test
     public void changePasswordTest(){
         //given
-        Member member = new Member("test", "test", "test");
+        Member member = new Member("test", "test", "test", Job.OTHER);
 
         //when
         member.changePassword("changedPassword");
@@ -57,7 +58,7 @@ public class MemberTest {
     @Test
     public void changeIntroductionTest(){
         //given
-        Member member = new Member("test", "test", "test");
+        Member member = new Member("test", "test", "test", Job.OTHER);
 
         //when
         member.changeIntroduction("changed");
@@ -68,7 +69,7 @@ public class MemberTest {
     @Test
     public void addPostTest(){
         //given
-        Member member = new Member("test", "test", "test");
+        Member member = new Member("test", "test", "test", Job.OTHER);
         Post post = new Post();
 
         //when
@@ -80,7 +81,7 @@ public class MemberTest {
     @Test
     public void addCommentTest(){
         //given
-        Member member = new Member("test", "test", "test");
+        Member member = new Member("test", "test", "test", Job.OTHER);
         Comment comment1 = new Comment();
         Comment comment2 = new Comment();
 
@@ -92,6 +93,42 @@ public class MemberTest {
         assertThat(member.getCommentList().size()).isEqualTo(2);
     }
 
+    @Test
+    public void changeJobTest(){
+        //given
+        Member member = new Member();
+        Job j = Job.STUDENT;
+
+        //when
+        member.changeJob(j);
+
+        //then
+        assertThat(member.getJob()).isEqualTo(Job.STUDENT);
+    }
+    @Test
+    public void changeExpYearTest(){
+        //given
+        Member member = new Member();
+        Integer expYear = 5;
+
+        //when
+        member.changeExpYear(expYear);
+
+        //then
+        assertThat(member.getExpYear()).isEqualTo(5);
+    }
+    @Test
+    public void changeAgeTest(){
+        //given
+        Member member = new Member();
+        Integer age = 20;
+
+        //when
+        member.changeAge(age);
+
+        //then
+        assertThat(member.getAge()).isEqualTo(20);
+    }
 
 
 }

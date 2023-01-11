@@ -12,7 +12,7 @@ public class PostTest {
     @Test
     public void CreatePostWithBuilderTest(){
         //when
-        Member member = new Member("test1","test1","test1");
+        Member member = new Member("test1","test1","test1",null);
         String title = "test";
         String content = "test";
 

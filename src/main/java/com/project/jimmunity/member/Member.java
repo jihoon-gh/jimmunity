@@ -32,6 +32,7 @@ public class Member extends BaseTimeEntity {
 
     private String profileImg;
 
+    @Enumerated(EnumType.STRING)
     private Job job;
 
     private Integer expYear;
@@ -47,10 +48,11 @@ public class Member extends BaseTimeEntity {
     private List<Comment> commentList = new ArrayList<>();
 
     @Builder //절대 null이면 안되는 값들의 초기화를 강제
-    public Member(String email, String password, String name) {
+    public Member(String email, String password, String name, Job job) {
         this.email = email;
         this.password = password;
         this.name = name;
+        changeJob(job);
     }
 
     public void changePassword(String password){
