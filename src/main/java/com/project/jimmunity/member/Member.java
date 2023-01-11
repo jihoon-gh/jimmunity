@@ -4,6 +4,7 @@ import com.project.jimmunity.commonEntity.BaseTimeEntity;
 import com.project.jimmunity.comment.Comment;
 import com.project.jimmunity.post.Post;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,11 @@ public class Member extends BaseTimeEntity {
 
     private String profileImg;
 
+    private Job job;
+
+    private Integer expYear;
+
+    private Integer age;
     @Column(columnDefinition = "TEXT")
     private String introduction;
 
@@ -40,7 +46,7 @@ public class Member extends BaseTimeEntity {
     @OneToMany(mappedBy = "member")
     private List<Comment> commentList = new ArrayList<>();
 
-    @Builder
+    @Builder //절대 null이면 안되는 값들의 초기화를 강제
     public Member(String email, String password, String name) {
         this.email = email;
         this.password = password;
@@ -67,5 +73,16 @@ public class Member extends BaseTimeEntity {
         this.commentList.add(comment);
     }
 
+    public void changeAge(Integer age){
+        this.age = age;
+    }
+
+    public void changeJob(Job job){
+        this.job = job;
+    }
+
+    public void changeExpYear(Integer expYear){
+        this.expYear = expYear;
+    }
 
 }
