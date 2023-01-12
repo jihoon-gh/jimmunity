@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -29,6 +31,9 @@ public class Comment extends BaseEntity {
     @JoinColumn(name = "post_id")
     private Post post;
 
+    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL)
+    private List<CommentLike> commentLikeList = new ArrayList<>();
+
     public Comment(Member member, Post post, String content){
         setOwner(member);
         setOriginalPost(post);
@@ -47,6 +52,10 @@ public class Comment extends BaseEntity {
     public void setOriginalPost(Post post){
         this.post = post;
         post.addComment(this);
+    }
+
+    public void addCommentLike(CommentLike commentLike){
+        commentLikeList.add(commentLike);
     }
 
 }

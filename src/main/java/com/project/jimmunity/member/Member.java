@@ -1,5 +1,6 @@
 package com.project.jimmunity.member;
 
+import com.project.jimmunity.comment.CommentLike;
 import com.project.jimmunity.commonEntity.BaseTimeEntity;
 import com.project.jimmunity.comment.Comment;
 import com.project.jimmunity.post.Post;
@@ -24,32 +25,27 @@ public class Member extends BaseTimeEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID id;
-
     private String email;
-
     private String password;
-
     private String name;
-
     private String profileImg;
-
     @Enumerated(EnumType.STRING)
     private Job job;
-
     private Integer expYear;
-
     private Integer age;
     @Column(columnDefinition = "TEXT")
     private String introduction;
 
     @OneToMany(mappedBy = "member")
     private List<Post> postList = new ArrayList<>();
-
     @OneToMany(mappedBy = "member")
     private List<Comment> commentList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<PostLike> postLikeList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<CommentLike> commentLikeList = new ArrayList<>();
 
     @Builder //절대 null이면 안되는 값들의 초기화를 강제
     public Member(String email, String password, String name, Job job) {
@@ -89,6 +85,11 @@ public class Member extends BaseTimeEntity {
 
     public void changeExpYear(Integer expYear){
         this.expYear = expYear;
+    }
+
+    public void addCommentLike(CommentLike commentLike){
+        commentLikeList.add(commentLike);
+
     }
 
 }
