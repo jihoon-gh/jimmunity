@@ -3,6 +3,7 @@ package com.project.jimmunity.entityTest;
 import com.project.jimmunity.comment.Comment;
 import com.project.jimmunity.member.Member;
 import com.project.jimmunity.post.Post;
+import com.project.jimmunity.post.PostType;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +35,7 @@ public class PostTest {
     public void setPostOwnerTest(){
         //given
         Member member = new Member();
-        Post post = new Post(member,"test","test");
+        Post post = new Post(member,"test","test", PostType.QUESTION);
 
         //when
 

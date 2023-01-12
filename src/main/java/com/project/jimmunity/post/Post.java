@@ -39,10 +39,11 @@ public class Post extends BaseEntity {
     private PostType postType;
 
     @Builder
-    public Post(Member member, String title, String content){
+    public Post(Member member, String title, String content, PostType postType){
         setPostOwner(member);
         this.title = title;
         this.content = content;
+        this.postType = postType;
     }
 
     public void setPostOwner(Member member){
@@ -59,5 +60,9 @@ public class Post extends BaseEntity {
 
     public void addPostLike(PostLike postLike) {
         this.postLikeList.add(postLike);
+    }
+
+    public void changePostType(PostType postType){
+        this.postType = postType;
     }
 }

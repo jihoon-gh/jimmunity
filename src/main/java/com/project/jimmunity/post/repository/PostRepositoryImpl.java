@@ -15,7 +15,7 @@ import static com.project.jimmunity.post.QPost.*;
 @RequiredArgsConstructor
 public class PostRepositoryImpl implements PostRepositoryCustom{
 
-    JPAQueryFactory queryFactory;
+    private final JPAQueryFactory queryFactory;
 
     @Override
     public List<Post> searchHotTopicsOfWeekendWithType(PostType postType, LocalDateTime localDateTime) {
