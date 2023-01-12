@@ -35,6 +35,9 @@ public class Post extends BaseEntity {
 
     private Integer viewCount = 0;
 
+    @Enumerated(EnumType.STRING)
+    private PostType postType;
+
     @Builder
     public Post(Member member, String title, String content){
         setPostOwner(member);
