@@ -20,18 +20,14 @@ public class Post extends BaseEntity {
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "uuid2")
     private UUID postId;
-
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
-
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> commentList = new ArrayList<>();
 
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
     private List<PostLike> postLikeList = new ArrayList<>();
-
 
     private String title;
 
@@ -55,6 +51,10 @@ public class Post extends BaseEntity {
     }
 
     public void addViewCount(){
-        viewCount++;
+        this.viewCount++;
+    }
+
+    public void addPostLike(PostLike postLike) {
+        this.postLikeList.add(postLike);
     }
 }

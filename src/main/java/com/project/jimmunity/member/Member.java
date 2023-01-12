@@ -88,8 +88,11 @@ public class Member extends BaseTimeEntity {
     }
 
     public void addCommentLike(CommentLike commentLike){
-        commentLikeList.add(commentLike);
+        this.commentLikeList.add(commentLike);
 
     }
 
+    public void addPostLike(PostLike postLike) {
+        this.postLikeList.add(postLike);
+    }
 }

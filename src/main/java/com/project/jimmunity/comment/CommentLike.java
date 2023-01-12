@@ -1,5 +1,6 @@
 package com.project.jimmunity.comment;
 
+import com.project.jimmunity.commonEntity.BaseTimeEntity;
 import com.project.jimmunity.member.Member;
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -8,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class CommentLike {
+public class CommentLike extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "comment_like_id")

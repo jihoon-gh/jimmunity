@@ -130,5 +130,4 @@ public class MemberTest {
         assertThat(member.getAge()).isEqualTo(20);
     }
 
-
 }
