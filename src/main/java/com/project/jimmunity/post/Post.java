@@ -29,10 +29,15 @@ public class Post extends BaseEntity {
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
     private List<Comment> commentList = new ArrayList<>();
 
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "post")
+    private List<PostLike> postLikeList = new ArrayList<>();
+
 
     private String title;
 
     private String content;
+
+    private Integer viewCount = 0;
 
     @Builder
     public Post(Member member, String title, String content){
@@ -49,5 +54,7 @@ public class Post extends BaseEntity {
         this.commentList.add(comment);
     }
 
-
+    public void addViewCount(){
+        viewCount++;
+    }
 }

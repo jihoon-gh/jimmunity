@@ -3,6 +3,7 @@ package com.project.jimmunity.member;
 import com.project.jimmunity.commonEntity.BaseTimeEntity;
 import com.project.jimmunity.comment.Comment;
 import com.project.jimmunity.post.Post;
+import com.project.jimmunity.post.PostLike;
 import jakarta.persistence.*;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Builder;
@@ -46,6 +47,9 @@ public class Member extends BaseTimeEntity {
 
     @OneToMany(mappedBy = "member")
     private List<Comment> commentList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<PostLike> postLikeList = new ArrayList<>();
 
     @Builder //절대 null이면 안되는 값들의 초기화를 강제
     public Member(String email, String password, String name, Job job) {
