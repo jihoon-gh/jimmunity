@@ -33,7 +33,7 @@ public class PostRepositoryImpl implements PostRepositoryCustom{
         return queryFactory
                 .select(post)
                 .from(post)
-                .where(isTitleContains(option, keyword), isContentContains(option, keyword))
+                .where(isKeywordContained(option, keyword))
                 .fetch();
     }
 
@@ -45,12 +45,13 @@ public class PostRepositoryImpl implements PostRepositoryCustom{
         return localDateTime == null ? null : post.createdAt.goe(localDateTime.minusDays(7));
     }
 
-    private BooleanExpression isTitleContains(SearchOption option, String keyword){
-        return (option == ALL || option == TITLE) ? null : post.title.contains(keyword);
-    }
-
-    private BooleanExpression isContentContains(SearchOption option, String keyword){
-        return (option == ALL || option == CONTENT) ? null : post.title.contains(keyword);
-
+    private BooleanExpression isKeywordContained(SearchOption option, String keyword){
+        if(option == TITLE){
+            return post.title.contains(keyword);
+        }
+        if(option == CONTENT){
+            return post.content.contains(keyword);
+        }
+        return null;
     }
 }
