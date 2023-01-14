@@ -49,4 +49,14 @@ public class PostRepositoryTest {
 
     }
 
+
+    @Test
+    public void search_posts_with_keyword_test(){
+        //given
+        Post post = new Post();
+        post.changeCon
+        //when
+
+        //then
+    }
 }

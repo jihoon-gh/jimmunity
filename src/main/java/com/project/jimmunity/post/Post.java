@@ -41,15 +41,24 @@ public class Post extends BaseEntity {
     @Builder
     public Post(Member member, String title, String content, PostType postType){
         setPostOwner(member);
-        this.title = title;
-        this.content = content;
-        this.postType = postType;
+        changeTitle(title);
+        changeContent(content);
+        changePostType(postType);
     }
 
-    public void setPostOwner(Member member){
+    private void setPostOwner(Member member){
         this.member = member;
         member.addPost(this);
     }
+
+    public void changeTitle(String title){
+        this.title = title;
+    }
+
+    public void changeContent(String content){
+        this.content = content;
+    }
+
     public void addComment(Comment comment){
         this.commentList.add(comment);
     }
