@@ -48,4 +48,5 @@ public class PostRepositoryTest {
         assertThat(postList.size()).isEqualTo(2);
 
     }
+
 }
